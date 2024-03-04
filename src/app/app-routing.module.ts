@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeCreateComponent } from './employee-create/employee-create.component';
-import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuard } from './auth-guard.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'create-employee' },
-  { path: 'create-employee', component: EmployeeCreateComponent },
-  { path: 'employees-list', component: EmployeeListComponent },
-  { path: 'employee-edit/:id', component: EmployeeEditComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: SigninComponent },
+  { path: 'register', component: SignupComponent },
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-
 export class AppRoutingModule {}
