@@ -26,12 +26,15 @@ export class SigninComponent implements OnInit {
   }
   ngOnInit() {}
   onSubmit() {
+    console.log(this.loginForm.value);
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
         this.responseHandler(result);
+        console.log(result);
       },
       (error) => {
         this.errors = error.error;
+        console.log(this.errors);
       },
       () => {
         this.authState.setAuthState(true);
